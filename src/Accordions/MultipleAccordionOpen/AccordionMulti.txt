@@ -1,0 +1,128 @@
+if (isAlreadyOpen) {
+  // Remove ID from the open list (close it)
+  const updated = openSections.filter((id) => id !== sectionId);
+  setOpenSections(updated);
+} else {
+  // Add ID to open list (open it)
+  setOpenSections([...openSections, sectionId]);
+}
+
+
+Code Explain:
+
+💡 Assume this setup:
+js
+Copy
+Edit
+openSections = [2];        // section 2 is currently open
+sectionId = 2;             // user clicks section 2 again
+
+
+1️⃣ Check if it's already open:
+js
+Copy
+Edit
+const isAlreadyOpen = openSections.includes(sectionId); 
+// true (because 2 is already in the list)
+✅ So we go inside the if block:
+
+
+
+2️⃣ Close that section:
+js
+Copy
+Edit
+const updated = openSections.filter((id) => id !== sectionId);
+// removes section 2 from the list: [2] → []
+
+setOpenSections(updated); 
+// now openSections = []
+✅ Result: All accordions are now closed.
+
+
+
+Now a second example:
+js
+Copy
+Edit
+openSections = [];        // currently, nothing is open
+sectionId = 1;            // user clicks section 1
+
+
+
+
+1️⃣ Check if it's already open:
+js
+Copy
+Edit
+const isAlreadyOpen = openSections.includes(sectionId); 
+// false (because 1 is not in the list)
+➡️ So we go to the else block:
+
+
+
+2️⃣ Open section 1:
+js
+Copy
+Edit
+setOpenSections([...openSections, sectionId]);
+// openSections = [...[], 1] = [1]
+✅ Result: Section 1 is now open.
+
+
+🔁 Summary of Behavior
+
+| Before `openSections` | Clicked ID | After `openSections` |
+| --------------------- | ---------- | -------------------- |
+| `[2]`                 | `2`        | `[]` (closed)        |
+| `[]`                  | `1`        | `[1]` (opened)       |
+| `[1, 3]`              | `3`        | `[1]` (3 closed)     |
+| `[1]`                 | `2`        | `[1, 2]` (2 opened)  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

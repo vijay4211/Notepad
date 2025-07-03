@@ -1,0 +1,70 @@
+
+####switch:
+
+const filterByDiscount = (products, discountRange) => {
+  switch (discountRange) {
+    case "30":
+      return products.filter((product) => calculateDiscount(product) >= 30);
+    case "50":
+      return products.filter((product) => calculateDiscount(product) >= 50);
+    case "70":
+      return products.filter((product) => calculateDiscount(product) >= 70);
+    default:
+      return products;
+  }
+};
+
+
+
+
+####if...else:
+
+const filterByDiscount = (products, discountRange) => {
+  if (discountRange === "30") {
+    return products.filter((product) => calculateDiscount(product) >= 30);
+  } else if (discountRange === "50") {
+    return products.filter((product) => calculateDiscount(product) >= 50);
+  } else if (discountRange === "70") {
+    return products.filter((product) => calculateDiscount(product) >= 70);
+  } else {
+    return products;
+  }
+};
+
+
+
+✅ Option 3: One-liner with .filter() + ternary
+
+const filterByDiscount = (products, discountRange) => {
+  return products.filter((product) => {
+    const discount = calculateDiscount(product);
+    return discountRange === "30"
+      ? discount >= 30
+      : discountRange === "50"
+      ? discount >= 50
+      : discountRange === "70"
+      ? discount >= 70
+      : true; // 'all' case
+  });
+};
+
+
+
+
+
+
+🧠 Key Concepts Used:
+* Discount formula:
+   (original−price)/original×100
+* filter() based on calculated discount
+* Dropdown to filter for 30%, 50%, or 70% and above
+
+
+🧪 Example Output:
+| Name  | Price | Original | Discount |
+| ----- | ----- | -------- | -------- |
+| Shoes | ₹1500 | ₹3000    | 50% off  |
+| Watch | ₹2000 | ₹5000    | 60% off  |
+
+
+

@@ -1,0 +1,52 @@
+const filterProductFunction = (products, selectedBrand) => {
+  if (selectedBrand === "all") return products;
+  return products.filter((product) => product.brand === selectedBrand);
+};
+
+
+🔁 Option 1: Using Ternary Operator
+js:
+return selectedBrand === "all"
+  ? products
+  : products.filter((product) => product.brand === selectedBrand);
+
+
+
+🔁 Option 2: Inline .filter() Only
+(always returns filtered array — even if no filtering is applied)
+
+js:
+return products.filter((product) =>
+  selectedBrand === "all" ? true : product.brand === selectedBrand
+);
+
+
+
+🔁 Option 3: Using switch-case
+js:
+switch (selectedBrand) {
+  case "all":
+    return products;
+  default:
+    return products.filter((product) => product.brand === selectedBrand);
+}
+
+
+
+🔁 Option 4: With early return + variable (for readability)
+js:
+let result = products;
+if (selectedBrand !== "all") {
+  result = products.filter((product) => product.brand === selectedBrand);
+}
+return result;
+
+
+✅ All options do the same:
+If "all" is selected → return all
+Otherwise → return products matching selected brand
+
+
+
+
+

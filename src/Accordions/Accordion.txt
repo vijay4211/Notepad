@@ -1,0 +1,9 @@
+
+Final Tip:
+If you're working in a team or building long-term code:
+
+🧠 Clear > Clever
+Avoid short names like id, toggle() unless it's obvious in the context.
+
+
+
