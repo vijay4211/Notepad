@@ -12,7 +12,10 @@ const PriceRangeFilter = () => {
   const [maxPrice, setMaxPrice] = useState(800); // default max
 
   // Filter products under or equal to selected price
-  const filteredProducts = products.filter((p) => p.price <= maxPrice);
+  const filteredProducts = products.filter(
+    (product) => product.price <= maxPrice
+  );
+  console.log("filteredProducts", filteredProducts);
 
   return (
     <div className="max-w-md mx-auto p-4">

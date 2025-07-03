@@ -9,7 +9,8 @@ import "./App.css";
 // import FilterProductByDiscount from "./Filters/filterByDiscount/FilterProductByDiscount";
 // import Accordion from "./Accordions/Accordion";
 // import AccordionMulti from "./Accordions/MultipleAccordionOpen/AccordionMulti ";
-import PriceRangeFilter from "./RangeSlider/PriceRangeFilter";
+// import PriceRangeFilter from "./RangeSlider/PriceRangeFilter";
+import ProductSearchFilter from "./Filters/ProductSearchFilter/ProductSearchFilter";
 // import Users from "./Users";
 
 // import Dummy from "./Dummy";
@@ -17,7 +18,7 @@ import PriceRangeFilter from "./RangeSlider/PriceRangeFilter";
 const App = () => {
   return (
     <div>
-      <PriceRangeFilter />
+      <ProductSearchFilter />
     </div>
   );
 };
