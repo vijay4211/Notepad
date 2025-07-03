@@ -1,0 +1,6 @@
+ const totalPage = Math.ceil(data.length / itemsPerPage);
+
+  const currentItems = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );

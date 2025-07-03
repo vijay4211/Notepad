@@ -1,0 +1,276 @@
+import React, { useState } from "react";
+import "./App.css";
+
+const App = () => {
+  const [users, setUsers] = useState([
+    { id: 1, name: "Sam", age: 25 },
+    { id: 2, name: "Jone", age: 36 },
+    { id: 3, name: "Kumar", age: 65 },
+    { id: 4, name: "Amit", age: 52 },
+  ]);
+
+  const [form, setForm] = useState({ name: "", age: "" });
+  const [editId, setEditId] = useState(null);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // ✅ Step 3: Handle Create & Update
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!form.name || !form.age) return;
+
+    if (editId) {
+      setUsers(
+        users.map((user) =>
+          user.id === editId
+            ? { ...user, name: form.name, age: +form.age }
+            : user
+        )
+      );
+      setEditId(null);
+    } else {
+      const newUser = {
+        id: Date.now(),
+        name: form.name,
+        age: +form.age,
+      };
+      setUsers([...users, newUser]);
+    }
+
+    setForm({ name: "", age: "" });
+  };
+
+  //✅ Step 4: Handle Edit & Delete
+  const handleEdit = (user) => {
+    setForm({ name: user.name, age: user.age });
+    setEditId(user.id);
+  };
+
+  const handleDelete = (id) => {
+    setUsers(users.filter((user) => user.id !== id));
+  };
+
+  return (
+    <div>
+      <h2>User CRUD App</h2>
+
+      <form onSubmit={handleSubmit}>
+        <div className="mb-5">
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Enter name"
+            className="border p-2 rounded"
+          />
+          <input
+            name="age"
+            value={form.age}
+            onChange={handleChange}
+            placeholder="Enter age"
+            type="number"
+            className="border p-2 rounded"
+          />
+          <button
+            type="submit"
+            className="bg-blue-900 text-white px-6 py-2 rounded"
+          >
+            {editId ? "Update" : "Add"}
+          </button>
+        </div>
+      </form>
+
+      <ul>
+        {users.map((user) => (
+          <li key={user.id} className="flex justify-between">
+            <div>
+              {user.name} ({user.age})
+            </div>
+
+            <div className="space-x-3 space-y-2">
+              <button
+                onClick={() => handleEdit(user)}
+                className="bg-green-900 text-white px-6 py-2 rounded"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(user.id)}
+                className="bg-red-900 text-white px-6 py-2 rounded"
+              >
+                Delete
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;
+
+
+
+js:
+if (!form.name || !form.age) return;
+//If either form.name or form.age is empty or falsy, then stop the function immediately (don't continue).
+
+
+
+
+Line-by-Line Explanation:
+js
+if (editId) {
+//Check if you are editing an existing user.
+//If editId has a value (e.g., 3), it means you're in edit mode.
+
+
+js:
+setUsers(
+   users.map((user) =>
+//Start updating the users state.
+//Use map to loop through the existing users array.
+
+
+js:
+user.id === editId
+  ? { ...user, name: form.name, age: +form.age }
+  : user
+
+//For each user, check if their id matches the editId.
+//If it matches, return a new updated object:
+//Keep all previous properties (...user)
+//Overwrite the name and age from the form state.
+//+form.age converts the age to a number.
+//If it doesn't match, return the user unchanged.
+
+
+
+js:
+setEditId(null);
+//Exit edit mode by setting editId to null.
+
+
+js:
+else {
+//If editId is not set, you're in add mode, so we add a new user.
+
+
+
+js:
+  const newUser = {
+    id: Date.now(),
+    name: form.name,
+    age: +form.age,
+  };
+
+
+//Create a new user object:
+//id is generated using Date.now() (gives a unique timestamp).
+//name and age come from the form.
+//+form.age ensures age is a number.
+
+
+js:
+ setUsers([...users, newUser]);
+
+
+
+js:
+setForm({ name: "", age: "" });
+//Clear the form inputs after submission by resetting form to empty strings.
+
+
+
+Summary:
+
+| Mode       | Action                                                        |
+| ---------- | ------------------------------------------------------------- |
+| **Edit**   | Finds the user by `id` and updates their `name` and `age`     |
+| **Add**    | Creates a new user with a unique `id` and adds it to the list |
+| **Common** | Clears the form after the action is complete                  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

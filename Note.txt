@@ -2,3 +2,6 @@
 >npm run dev
 
  ➜  Local:  http://localhost:5173/
+
+ ----------react router dom:
+ > npm i react-router-dom:
