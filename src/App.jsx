@@ -4,7 +4,8 @@ import "./App.css";
 // import ProductDiscount from "./ProductDiscount/ProductDiscount";
 // import ProductQuantity from "./Product Quntity Incress and Decress/ProductQuantity";
 // import Filter from "./Filters/Filter-1/Filter";
-import FilterByCategory from "./Filters/Filter-2/filterByCategory";
+// import FilterByCategory from "./Filters/Filter-2/filterByCategory";
+import FilterByBrand from "./Filters/filterByBrand/FilterByBrand";
 // import Users from "./Users";
 
 // import Dummy from "./Dummy";
@@ -12,7 +13,7 @@ import FilterByCategory from "./Filters/Filter-2/filterByCategory";
 const App = () => {
   return (
     <div>
-      <FilterByCategory />
+      <FilterByBrand />
     </div>
   );
 };

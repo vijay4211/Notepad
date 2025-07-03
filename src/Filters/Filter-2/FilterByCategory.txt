@@ -1,0 +1,58 @@
+Code:
+const filterCategory = (items, selectedCategory) => {
+  if (selectedCategory === "all") return items;
+  return items.filter((item) => item.category === selectedCategory);
+};
+
+Explain Above Code:
+✅ Explanation:
+📌 const filterCategory = (items, selectedCategory) => { ... }
+Declares an arrow function named filterCategory.
+
+It takes 2 parameters:
+
+items: an array of product objects.
+
+selectedCategory: the current selected filter (like "Electronics", "Fashion", or "all").
+
+
+📌 if (selectedCategory === "all") return items;
+If the selected category is "all", it means the user wants to see all products, not filtered.
+
+So it directly returns the full items array without filtering.
+
+
+📌 return items.filter((item) => item.category === selectedCategory);
+If a specific category is selected (like "Electronics"), this line filters the products.
+
+.filter() goes through each product (item) and keeps only those where item.category matches selectedCategory.
+
+
+
+📦 Example in Action:
+js
+Copy
+Edit
+items = [
+  { name: "Laptop", category: "Electronics" },
+  { name: "T-shirt", category: "Fashion" }
+];
+
+selectedCategory = "Electronics";
+
+Result → filterCategory(items, "Electronics")
+→ [
+  { name: "Laptop", category: "Electronics" }
+]
+
+
+✅ Summary:
+This function is used to dynamically filter products based on the selected category.
+It uses simple logic:
+
+If user selects "all" → return everything
+
+Otherwise → return only matching category
+
+Let me know if you'd like a version that filters by multiple conditions (like category + price
+
