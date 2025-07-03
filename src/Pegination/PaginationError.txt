@@ -1,0 +1,43 @@
+
+----Problem:
+Error: Objects are not valid as a React child (found:  
+
+----Solution:
+✅ Common Case in .map():
+jsx
+Copy
+Edit
+{data.map((item) => (
+  <div key={item.id}>
+    {item.name} - {item.age}
+  </div>
+))}
+
+
+🛠️ Fix Summary:
+Don't do: <div>{item}</div> ❌
+
+Do: <div>{item.name}</div> ✅
+
+
+
+
+-----------Problem:
+TypeError: data.from is not a function
+
+-----------Solution:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

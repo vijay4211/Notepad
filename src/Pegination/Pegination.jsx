@@ -27,21 +27,48 @@ const data = [
 
 const Pegination = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  console.log("currentPage", currentPage);
 
-  const totalPage = Math.ceil(data.length / itemsPerPage);
+  const itemsPerPage = 5;
 
-  const currentItems = data.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  console.log("totalPages", totalPages); //4
+
+  const start = (currentPage - 1) * itemsPerPage; //1-1 -> 0 * 5 -> 0
+  const end = currentPage * itemsPerPage; //0 * 5 -> 0
+
+  const currentItems = data.slice(start, end);
+  console.log("currentItems", currentItems);
+
   return (
     <div>
       <div className="bg-red-200 p-6 max-w-xl">
         <h1 className="text-xl font-bold mb-4">Pagination</h1>
-        <ul className="bg-red-300 p-5"></ul>
+        <ul className="bg-red-300 p-5">
+          {currentItems.map((item, i) => (
+            <li key={i} className="bg-blue-400 p-3 rounded">
+              {item.name}
+            </li>
+          ))}
+        </ul>
+
         <div className="flex justify-center space-x-2">
-          <button className="bg-green-300 px-4 py-1 rounded">Click</button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            // 🔁 Loop to generate totalPages number of buttons (e.g., 1 to 5)
+
+            <button
+              key={index} // ✅ Unique key for React list rendering
+              onClick={() => setCurrentPage(index + 1)} // 🖱️ On click, set current page (index + 1 because page numbers start from 1)
+              className={`px-4 py-2 rounded border 
+      ${
+        currentPage === index + 1
+          ? "bg-blue-600 text-white" // 🎯 If it's the active page, highlight it
+          : "bg-white text-blue-600 border-blue-300" // ⚪ If it's not active, show normal style
+      }`}
+            >
+              {index + 1} {/* 🔢 Display the page number (1-based) */}
+            </button>
+          ))}
         </div>
       </div>
     </div>

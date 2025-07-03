@@ -4,3 +4,162 @@
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+
+  ✅ Line 1:
+js
+Copy
+Edit
+const totalPage = Math.ceil(data.length / itemsPerPage);
+data.length → total number of items in your data array.
+
+itemsPerPage → number of items you want to show on each page (like 5 or 10).
+
+data.length / itemsPerPage → gives you how many pages you'll need, possibly with decimal.
+
+Math.ceil() → rounds the result up to the next whole number (so you don't miss any items).
+
+🧠 Example:
+If you have 13 items and show 5 per page:
+
+js
+Copy
+Edit
+Math.ceil(13 / 5) = Math.ceil(2.6) = 3 pages
+
+
+
+✅ Line 2:
+js
+Copy
+Edit
+const currentItems = data.slice(
+  (currentPage - 1) * itemsPerPage,
+  currentPage * itemsPerPage
+);
+This slices the data array to show only the items for the current page.
+
+📌 First parameter:
+js
+Copy
+Edit
+(currentPage - 1) * itemsPerPage
+This calculates the starting index of the data for the current page.
+
+🧠 For example, if currentPage = 2 and itemsPerPage = 5:
+
+js
+Copy
+Edit
+(2 - 1) * 5 = 5 → slice will start from index 5
+
+
+📌 Second parameter:
+js
+Copy
+Edit
+currentPage * itemsPerPage
+This gives the ending index (non-inclusive) of the data for the current page.
+
+🧠 For currentPage = 2 and itemsPerPage = 5:
+
+js
+Copy
+Edit
+2 * 5 = 10 → slice will end at index 10 (not included)
+
+
+
+✅ Final Result:
+js
+Copy
+Edit
+data.slice(5, 10) // returns items at index 5 to 9 (2nd page)
+
+
+#########################################################################
+{Array.from({ length: totalPages }, (_, index) => (
+  <button
+    key={index}
+    onClick={() => setCurrentPage(index + 1)}
+    className={`px-4 py-2 rounded border 
+      ${
+        currentPage === index + 1
+          ? "bg-blue-600 text-white"
+          : "bg-white text-blue-600 border-blue-300"
+      }`}
+  >
+    {index + 1}
+  </button>
+))}
+
+
+🔍 Explanation (Line by Line)
+✅ Array.from({ length: totalPages }, (_, index) => ( ... ))
+Creates an array of totalPages length, with values undefined, but you're just using the index.
+
+_ means “we’re ignoring the current value.”
+
+index will go from 0 to totalPages - 1.
+
+👉 For example, if totalPages = 5, this will generate:
+
+js
+Copy
+Edit
+[0, 1, 2, 3, 4]
+
+
+
+✅ Inside the .map()-like callback:
+For each index, you're rendering a <button>:
+
+jsx
+Copy
+Edit
+<button
+  key={index}
+  onClick={() => setCurrentPage(index + 1)}
+  ...
+>
+  {index + 1}
+</button>
+key={index}: React needs a unique key for list rendering.
+
+onClick={() => setCurrentPage(index + 1)}: sets the current page number when the button is clicked (1-based, so add +1).
+
+{index + 1}: displays button text as 1, 2, 3,...
+
+
+
+✅ className={...} logic:
+You're conditionally changing button styles based on whether this page number is the active one:
+
+jsx
+Copy
+Edit
+currentPage === index + 1
+  ? "bg-blue-600 text-white"         // Active page: blue background, white text
+  : "bg-white text-blue-600 border-blue-300"  // Inactive: white background, blue text
+  
+🧠 Why index + 1?
+Because indexes start from 0, but page numbers start from 1.
+
+
+✅ Final Output (if totalPages = 3):
+html
+Copy
+Edit
+<button>1</button>
+<button>2</button>
+<button>3</button>
+
+
+
+
+
+
+
+
+
+
